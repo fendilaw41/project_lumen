@@ -20,7 +20,5 @@ class FilterController extends Controller
         });
 
       return response()->json(var_dump($filtered));
-      // return response()->json($filtered);
-      // return response()->json($data);
    }
 }
