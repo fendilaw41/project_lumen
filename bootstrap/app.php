@@ -23,8 +23,6 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-$app->register(Kreait\Laravel\Firebase\ServiceProvider::class);
-
 
 $app->withFacades();
 
@@ -91,7 +89,7 @@ $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
 
-
+$app->register(Kreait\Laravel\Firebase\ServiceProvider::class);
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
@@ -105,6 +103,8 @@ $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 | can respond to, as well as the controllers that may handle them.
 |
 */
+$app->register('Sentry\Laravel\Tracing\ServiceProvider');
+$app->register('Sentry\Laravel\ServiceProvider');
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',

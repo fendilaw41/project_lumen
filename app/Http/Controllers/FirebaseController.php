@@ -3,27 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use Kreait\Firebase\Factory;
-use Kreait\Firebase\ServiceAccount;
+use App\Models\Customer;
 use Kreait\Firebase\Database;
 
 class FirebaseController extends Controller
 {
-    public function __construct(Database $database)
-    {
-        $this->database = $database;
-        $this->tablename = 'posts';
-    }
-    public function index()
-    {
+    protected $database;
 
-       $reference  = $this->database->getReference($this->tablename);
+    public function __construct()
+    {
+        
+        $database = app('firebase.database');
+    }
+
+     public function index()
+    {
+        $reference = $database->getReference('Posts');
 
         return response()->json([
             'status' => true,
-            'message' => "Sukses Menampilkan semua data POSTS FIREBASE",
-            'results' => $reference 
+            'message' => "Sukses Menampilkan semua data Post",
+            'results' => $reference
         ]);
     }
 
@@ -34,7 +34,7 @@ class FirebaseController extends Controller
             'body' => $request->body,
             'slug' => $request->slug,
         ];
-        $postRef = $this->database->getReference($this->tablename)->push($postData);
+        $postRef = $this->database->getReference('posts')->push($postData);
         dd($postData);
 
          return response()->json([

@@ -14,6 +14,15 @@ $router->get('/key', function() {
 
  //***************** END KEY GENERATE ******************\\
 
+ //***************** SENTRY ******************\\
+Route::get('/debug-sentry', function () {
+    throw new Exception('Test Error!');
+});
+ //***************** END SENTRY ******************\\
+
+ //***************** FILTER OBJECT ******************\\
+$router->get('/filter','FilterController@index');
+ //***************** FILTER OBJECT ******************\\
 
 $router->group(['middleware' => 'auth','prefix' => 'api'], function ($router) 
 {
