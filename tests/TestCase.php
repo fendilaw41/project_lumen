@@ -2,6 +2,7 @@
 
 use Laravel\Lumen\Testing\TestCase as BaseTestCase;
 use Faker\Factory;
+use Laravel\Lumen\Http\ResponseFactory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 abstract class TestCase extends BaseTestCase
@@ -16,11 +17,11 @@ abstract class TestCase extends BaseTestCase
         return require __DIR__.'/../bootstrap/app.php';
     }
 
-     protected $faker;
+    //  protected $faker;
 
-      public function setUp(): void
-      {    
-             parent::setUp();   
-      $this->faker = Factory::create();
-    }
+    //   public function setUp(): void
+    //   {    
+    //          parent::setUp();   
+    //   $this->faker = Factory::create();
+    // }
 }

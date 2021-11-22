@@ -11,8 +11,15 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
-    {
-        //
+        public function register()
+        {
+            $this->app->singleton(\Illuminate\Contracts\Routing\ResponseFactory::class, function() 
+            {
+                return new \Laravel\Lumen\Http\ResponseFactory(); 
+            }
+        );
+        $this->app->bind(\Illuminate\Contracts\Routing\UrlGenerator::class, function ($app) {
+         return new \Laravel\Lumen\Routing\UrlGenerator($app);
+      }); 
     }
 }
